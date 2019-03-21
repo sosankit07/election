@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Poll">
+
+    <Spinner
+        android:id="@+id/poll_booth"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="36dp"
+        tools:ignore="MissingConstraints"
+        android:entries="@array/booth"/>
+
+    <CheckBox
+        android:id="@+id/mockpoll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mock_poll_completed"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="91dp"
+        tools:ignore="MissingConstraints" />
+
+    <CheckBox
+        android:id="@+id/mockpoll_absence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mock_poll_in_absence_of_polling_agent"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="150dp"
+        tools:ignore="MissingConstraints" />
+
+    <CheckBox
+        android:id="@+id/pollstart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/poll_started"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="218dp"
+        tools:ignore="MissingConstraints" />
+
+    <CheckBox
+        android:id="@+id/pollclose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/poll_closed_at_scheduled_time"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="284dp"
+        tools:ignore="MissingConstraints" />
+
+    <CheckBox
+        android:id="@+id/finalpoll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/final_poll_closure"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="406dp" />
+
+    <CheckBox
+        android:id="@+id/pollparty_reached"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/polling_party_reached_at_receiving_cell"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="468dp" />
+
+    <EditText
+        android:id="@+id/votersqueue"
+        android:layout_width="313dp"
+        android:layout_height="39dp"
+        android:ems="10"
+        android:hint="@string/voters_in_queue_at_the_time_of_closing"
+        android:inputType="number"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="340dp" />
+
+    <EditText
+        android:id="@+id/agents"
+        android:layout_width="171dp"
+        android:layout_height="44dp"
+        android:ems="10"
+        android:hint="@string/no_of_agents"
+        android:inputType="number"
+        android:visibility="gone"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="196dp"
+        tools:layout_editor_absoluteY="83dp" />
+
+
+</android.support.constraint.ConstraintLayout>

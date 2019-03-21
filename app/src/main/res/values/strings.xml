@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">election</string>
+    <string name="login">Login</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="pre_poll_activities">Pre Poll Activities</string>
+    <string name="poll_day_activities">Poll Day Activities</string>
+    <string name="poll_day_turnout">Poll Day Turnout</string>
+    <string name="mock_poll_completed">Mock Poll Completed</string>
+    <string name="mock_poll_in_absence_of_polling_agent">Mock Poll in Absence of Polling Agent</string>
+    <string name="poll_started">Poll Started</string>
+    <string name="poll_closed_at_scheduled_time">Poll Closed at Scheduled Time</string>
+    <string name="final_poll_closure">Final Poll Closure</string>
+    <string name="polling_party_reached_at_receiving_cell">Polling Party Reached at Receiving Cell</string>
+    <string name="voters_in_queue_at_the_time_of_closing">Voters in Queue at the time of Closing</string>
+    <string name="no_of_agents">No. of Agents</string>
+    <string name="polling_party_dispatch">Polling Party Dispatch</string>
+    <string name="polling_party_arrived">Polling Party Arrived</string>
+    <string name="enter_male_count">Enter Male Count</string>
+    <string name="enter_female_count">Enter Female Count</string>
+    <string name="enter_transgender_count">Enter Transgender Count</string>
+    <string name="submit">Submit</string>
+    <string name="login_text">Login</string>
+    <string name="signin">Signin</string>
+    <string-array name="booth">
+        <item>Select Booth</item>
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+    </string-array>
+    <string-array name="time">
+        <item>Select Reporting Time</item>
+        <item>9 am</item>
+        <item>11 am</item>
+        <item>1 pm</item>
+        <item>3 pm</item>
+        <item>5 pm</item>
+        <item>Final</item>
+    </string-array>
+</resources>

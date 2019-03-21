@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Turnout">
+
+    <Spinner
+        android:id="@+id/turnout_booth"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="41dp"
+        tools:ignore="MissingConstraints"
+        android:entries="@array/booth"/>
+
+    <Spinner
+        android:id="@+id/time"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="127dp"
+        tools:ignore="MissingConstraints"
+        android:entries="@array/time"/>
+
+    <EditText
+        android:id="@+id/male"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="202dp"
+        tools:ignore="MissingConstraints"
+        android:hint="@string/enter_male_count"/>
+
+    <EditText
+        android:id="@+id/female"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="296dp"
+        tools:ignore="MissingConstraints"
+        android:hint="@string/enter_female_count"/>
+
+    <EditText
+        android:id="@+id/transgender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="@string/enter_transgender_count"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="392dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/submit"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="479dp"
+        tools:ignore="MissingConstraints" />
+</android.support.constraint.ConstraintLayout>
