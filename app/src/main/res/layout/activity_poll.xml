@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,51 +10,68 @@
         android:id="@+id/poll_booth"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="36dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp"
+        android:entries="@array/booth"
         tools:ignore="MissingConstraints"
-        android:entries="@array/booth"/>
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="36dp" />
 
     <CheckBox
         android:id="@+id/mockpoll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/poll_booth"
+        android:layout_marginTop="105dp"
         android:text="@string/mock_poll_completed"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="91dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="91dp" />
 
     <CheckBox
         android:id="@+id/mockpoll_absence"
-        android:layout_width="wrap_content"
+        android:layout_width="353dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/poll_booth"
+        android:layout_marginTop="166dp"
         android:text="@string/mock_poll_in_absence_of_polling_agent"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="150dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="150dp" />
 
     <CheckBox
         android:id="@+id/pollstart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/poll_booth"
+        android:layout_marginTop="236dp"
         android:text="@string/poll_started"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="218dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="218dp" />
 
     <CheckBox
         android:id="@+id/pollclose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/poll_booth"
+        android:layout_centerVertical="true"
         android:text="@string/poll_closed_at_scheduled_time"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="284dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="284dp" />
 
     <CheckBox
         android:id="@+id/finalpoll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/poll_booth"
+        android:layout_marginBottom="240dp"
         android:text="@string/final_poll_closure"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp"
@@ -64,6 +81,9 @@
         android:id="@+id/pollparty_reached"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/poll_booth"
+        android:layout_marginBottom="163dp"
         android:text="@string/polling_party_reached_at_receiving_cell"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp"
@@ -73,6 +93,9 @@
         android:id="@+id/votersqueue"
         android:layout_width="313dp"
         android:layout_height="39dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/poll_booth"
+        android:layout_marginBottom="82dp"
         android:ems="10"
         android:hint="@string/voters_in_queue_at_the_time_of_closing"
         android:inputType="number"
@@ -82,15 +105,25 @@
 
     <EditText
         android:id="@+id/agents"
-        android:layout_width="171dp"
+        android:layout_width="131dp"
         android:layout_height="44dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/mockpoll"
         android:ems="10"
         android:hint="@string/no_of_agents"
         android:inputType="number"
-        android:visibility="gone"
+        android:visibility="invisible"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="196dp"
         tools:layout_editor_absoluteY="83dp" />
 
+    <TextView
+        android:id="@+id/datetime2"
+        android:layout_width="359dp"
+        android:layout_height="38dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="13dp" />
 
-</android.support.constraint.ConstraintLayout>
+
+</RelativeLayout>

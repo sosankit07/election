@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,6 +11,9 @@
         android:id="@+id/login_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="194dp"
         android:ems="10"
         android:hint="@string/enter_username"
         android:inputType="textPersonName"
@@ -22,6 +25,7 @@
         android:id="@+id/login_pass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:ems="10"
         android:hint="@string/enter_password"
         android:inputType="textPassword"
@@ -33,6 +37,10 @@
         android:id="@+id/login_text"
         android:layout_width="164dp"
         android:layout_height="49dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="73dp"
         android:text="@string/login"
         android:textSize="30sp"
         tools:ignore="MissingConstraints"
@@ -43,8 +51,37 @@
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="182dp"
         android:text="@string/signin"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="139dp"
-        tools:layout_editor_absoluteY="360dp"
-        tools:ignore="MissingConstraints" />
-</android.support.constraint.ConstraintLayout>
+        tools:layout_editor_absoluteY="360dp" />
+
+    <Spinner
+        android:id="@+id/officers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="135dp"
+        android:entries="@array/officers"/>
+
+    <TextView
+        android:id="@+id/deviceinfo"
+        android:layout_width="365dp"
+        android:layout_height="150dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/login_text"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/datetime"
+        android:layout_width="360dp"
+        android:layout_height="44dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp" />
+
+</RelativeLayout>

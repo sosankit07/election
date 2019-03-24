@@ -37,4 +37,10 @@
         <item>5 pm</item>
         <item>Final</item>
     </string-array>
+    <string-array name="officers">
+        <item>Select</item>
+        <item>Zonal Officer</item>
+        <item>ARO</item>
+        <item>ARO Assistant</item>
+    </string-array>
 </resources>
