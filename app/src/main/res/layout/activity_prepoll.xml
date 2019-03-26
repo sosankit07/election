@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Prepoll">
+    tools:context=".Prepoll"
+    android:id="@+id/layoutprepoll">
 
     <Spinner
         android:id="@+id/pre_booth"
@@ -18,30 +19,6 @@
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="83dp" />
 
-    <Button
-        android:id="@+id/dispatch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/pre_booth"
-        android:layout_marginTop="154dp"
-        android:text="@string/polling_party_dispatch"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="151dp" />
-
-    <Button
-        android:id="@+id/arrive"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/dispatch"
-        android:layout_marginTop="228dp"
-        android:text="@string/polling_party_arrived"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="249dp" />
-
     <TextView
         android:id="@+id/datetime3"
         android:layout_width="366dp"
@@ -49,4 +26,26 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="17dp" />
+
+    <Button
+        android:id="@+id/partydispatch"
+        android:layout_width="265dp"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/pre_booth"
+        android:layout_marginTop="150dp"
+        android:background="#0000ff"
+        android:text="Polling party Dispatch"
+        android:textColor="#fff" />
+
+    <Button
+        android:id="@+id/partyarrived"
+        android:layout_width="264dp"
+        android:layout_height="62dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/pre_booth"
+        android:layout_marginTop="249dp"
+        android:background="#0000ff"
+        android:text="Polling party Arrived"
+        android:textColor="#fff" />
 </RelativeLayout>

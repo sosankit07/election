@@ -2,6 +2,7 @@ package com.example.asus.election;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -13,6 +14,7 @@ public class Turnout extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_turnout);
         datetime4 = findViewById(R.id.datetime4);
+
         //Thread to get date and time continuously
         Thread t = new Thread() {
             @Override

@@ -59,14 +59,6 @@
         tools:layout_editor_absoluteX="139dp"
         tools:layout_editor_absoluteY="360dp" />
 
-    <Spinner
-        android:id="@+id/officers"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="135dp"
-        android:entries="@array/officers"/>
 
     <TextView
         android:id="@+id/deviceinfo"
