@@ -56,13 +56,14 @@
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/pollclose"
         android:layout_marginTop="266dp"
-        android:background="#0000ff"
+        android:background="#ff888888"
         android:text="@string/poll_started"
         android:textAlignment="center"
         android:textColor="#fff"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="218dp" />
+        tools:layout_editor_absoluteY="218dp"
+        android:enabled="false"/>
 
     <Button
         android:id="@+id/pollclose"
@@ -71,13 +72,14 @@
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/finalpoll"
         android:layout_marginBottom="260dp"
-        android:background="#0000ff"
+        android:background="#ff888888"
         android:text="@string/poll_closed_at_scheduled_time"
         android:textAlignment="center"
         android:textColor="#fff"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="284dp" />
+        tools:layout_editor_absoluteY="284dp"
+        android:enabled="false"/>
 
     <Button
         android:id="@+id/finalpoll"
@@ -86,13 +88,14 @@
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/pollparty_reached"
         android:layout_marginBottom="178dp"
-        android:background="#0000ff"
+        android:background="#ff888888"
         android:text="@string/final_poll_closure"
         android:textAlignment="center"
         android:textColor="#fff"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="406dp" />
+        tools:layout_editor_absoluteY="406dp"
+        android:enabled="false"/>
 
     <Button
         android:id="@+id/pollparty_reached"
@@ -100,27 +103,47 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="91dp"
-        android:background="#0000ff"
+        android:layout_marginBottom="25dp"
+        android:background="#ff888888"
         android:text="@string/polling_party_reached_at_receiving_cell"
         android:textAlignment="gravity"
         android:textColor="#fff"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="468dp" />
-
+        tools:layout_editor_absoluteY="468dp"
+        android:enabled="false"/>
 
 
     <TextView
         android:id="@+id/datetime2"
-        android:layout_width="359dp"
+        android:layout_width="111dp"
         android:layout_height="38dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:textAlignment="center"
-        android:layout_marginTop="13dp" />
+        android:layout_marginTop="15dp"
+        android:textAlignment="center" />
 
+    <Button
+        android:id="@+id/poll_votersqueue"
+        android:layout_width="319dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/mockpoll"
+        android:layout_marginBottom="104dp"
+        android:background="#ff888888"
+        android:text="@string/voters_in_queue_at_the_time_of_closing"
+        android:textColor="#fff"
+        android:enabled="false"/>
 
+    <TextView
+        android:id="@+id/error"
+        android:layout_width="170dp"
+        android:layout_height="29dp"
+        android:layout_above="@+id/poll_booth"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="-60dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="#ff0000" />
 
 
 </RelativeLayout>

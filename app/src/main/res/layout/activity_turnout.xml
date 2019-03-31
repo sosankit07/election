@@ -25,7 +25,6 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="100dp"
-        android:entries="@array/time"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="127dp" />
@@ -43,7 +42,8 @@
         android:inputType="number"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="202dp" />
+        tools:layout_editor_absoluteY="202dp"
+        android:enabled="false"/>
 
     <EditText
         android:id="@+id/female"
@@ -57,7 +57,8 @@
         android:inputType="number"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="296dp" />
+        tools:layout_editor_absoluteY="296dp"
+        android:enabled="false"/>
 
     <EditText
         android:id="@+id/transgender"
@@ -71,7 +72,8 @@
         android:inputType="number"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="392dp" />
+        tools:layout_editor_absoluteY="392dp"
+        android:enabled="false"/>
 
     <Button
         android:id="@+id/submit"
@@ -83,13 +85,23 @@
         android:text="@string/submit"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="479dp" />
+        tools:layout_editor_absoluteY="479dp"
+        />
 
     <TextView
         android:id="@+id/datetime4"
-        android:layout_width="364dp"
+        android:layout_width="188dp"
         android:layout_height="39dp"
         android:layout_above="@+id/turnout_booth"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="-50dp" />
+
+    <TextView
+        android:id="@+id/turnout_error"
+        android:layout_width="170dp"
+        android:layout_height="29dp"
+        android:layout_above="@+id/turnout_booth"
+        android:layout_marginBottom="-50dp"
+        android:layout_toEndOf="@+id/male"
+        android:textColor="#ff0000" />
 </RelativeLayout>

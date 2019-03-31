@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/datetime3"
-        android:layout_width="366dp"
+        android:layout_width="204dp"
         android:layout_height="47dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
@@ -45,7 +45,16 @@
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/pre_booth"
         android:layout_marginTop="249dp"
-        android:background="#0000ff"
+        android:background="#ff888888"
         android:text="Polling party Arrived"
+        android:enabled="false"
         android:textColor="#fff" />
+
+    <TextView
+        android:id="@+id/prepoll_error"
+        android:layout_width="170dp"
+        android:layout_height="29dp"
+        android:layout_alignBottom="@+id/datetime3"
+        android:layout_alignEnd="@+id/pre_booth"
+        android:textColor="#ff0000" />
 </RelativeLayout>

@@ -14,8 +14,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:textColor="#fff" />
+        android:textColor="#fff"
+        />
 
     <EditText
         android:id="@+id/agents"
@@ -46,6 +46,9 @@
         android:layout_alignStart="@+id/edittime"
         android:layout_marginTop="172dp"
         android:text="Cancel" />
+
+
+
 
 
 </RelativeLayout>

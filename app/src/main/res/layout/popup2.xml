@@ -6,16 +6,6 @@
     android:background="#808080"
     >
 
-    <EditText
-        android:id="@+id/edittime2"
-        android:layout_width="312dp"
-        android:layout_height="56dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textColor="#fff" />
 
     <EditText
         android:id="@+id/votersqueue"
@@ -34,7 +24,7 @@
         android:id="@+id/confirm2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/edittime2"
+        android:layout_alignEnd="@+id/votersqueue"
         android:layout_alignTop="@+id/cancel2"
         android:text="Submit" />
 
@@ -43,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/edittime2"
+        android:layout_alignStart="@+id/votersqueue"
         android:layout_marginTop="183dp"
         android:text="Cancel" />
 
