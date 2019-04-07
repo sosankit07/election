@@ -14,10 +14,11 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="87dp"
-        android:entries="@array/booth"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="83dp" />
+        tools:layout_editor_absoluteY="83dp"
+        />
+        <!--android:entries="@array/booth"/>-->
 
     <TextView
         android:id="@+id/datetime3"
@@ -32,23 +33,41 @@
         android:layout_width="265dp"
         android:layout_height="60dp"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/pre_booth"
-        android:layout_marginTop="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="186dp"
         android:background="#0000ff"
         android:text="Polling party Dispatch"
         android:textColor="#fff" />
+
+    <TextView
+        android:id="@+id/dispatch_status"
+        android:layout_width="262dp"
+        android:layout_height="115dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="256dp"
+        android:textColor="#ff0000" />
 
     <Button
         android:id="@+id/partyarrived"
         android:layout_width="264dp"
         android:layout_height="62dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/pre_booth"
-        android:layout_marginTop="249dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="218dp"
         android:background="#ff888888"
-        android:text="Polling party Arrived"
         android:enabled="false"
+        android:text="Polling party Arrived"
         android:textColor="#fff" />
+
+    <TextView
+        android:id="@+id/arrived_status"
+        android:layout_width="262dp"
+        android:layout_height="115dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="91dp"
+        android:textColor="#ff0000" />
 
     <TextView
         android:id="@+id/prepoll_error"
@@ -57,4 +76,6 @@
         android:layout_alignBottom="@+id/datetime3"
         android:layout_alignEnd="@+id/pre_booth"
         android:textColor="#ff0000" />
+
+
 </RelativeLayout>

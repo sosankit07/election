@@ -22,11 +22,16 @@
     <string name="login_text">Login</string>
     <string name="signin">Signin</string>
     <string name="mock_poll_in_absence_of_polling_agent">Mock Poll in Absence of Polling Agent</string>
+    <string name="poll_concluded">Poll Concluded</string>
     <string-array name="booth">
         <item>Select Booth</item>
         <item>A</item>
         <item>B</item>
         <item>C</item>
+        <item>D</item>
+        <item>E</item>
+        <item>F</item>
+        <item>G</item>
     </string-array>
     <string-array name="time">
         <item>Select Reporting Time</item>

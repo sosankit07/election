@@ -10,10 +10,21 @@ import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.kosalgeek.genasync12.AsyncResponse;
+import com.kosalgeek.genasync12.EachExceptionsHandler;
+import com.kosalgeek.genasync12.PostResponseAsyncTask;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 
 public class Login extends AppCompatActivity {
     Button login;
@@ -21,6 +32,8 @@ public class Login extends AppCompatActivity {
     Calendar calendar;
     SimpleDateFormat simpledateformat;
     String Date;
+    EditText user,pass;
+    String USER, PASS;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +41,8 @@ public class Login extends AppCompatActivity {
         login = findViewById(R.id.login_button);
         deviceinfo = findViewById(R.id.deviceinfo);
         datetime = findViewById(R.id.datetime);
+        user = findViewById(R.id.login_username);
+        pass = findViewById(R.id.login_pass);
         //Thread to get date and time continuously
         Thread t = new Thread() {
             @Override
@@ -74,11 +89,65 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Login.this,Menu.class);
-                startActivity(intent);
+                func();
+                //Toast.makeText(getApplicationContext(), "Something went wrong! Try later!", Toast.LENGTH_SHORT).show();
+
             }
         });
 
+
+    }
+
+    public void func(){
+        //Toast.makeText(getApplicationContext(),"hello",Toast.LENGTH_SHORT).show();
+        HashMap<String, String> getData = new HashMap<String, String>();
+        USER = user.getText().toString();
+        PASS = pass.getText().toString();
+        getData.put("user", USER);
+        getData.put("pass", PASS);
+
+        PostResponseAsyncTask task2 = new PostResponseAsyncTask(Login.this, getData, new AsyncResponse() {
+            @Override
+            public void processFinish(String s) {
+                if (!(s.isEmpty())) {
+                   Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Login.this,Menu.class);
+                    startActivity(intent);
+
+                } else {
+                    Toast.makeText(getApplicationContext(), "Something went wrong! Try later!", Toast.LENGTH_SHORT).show();
+
+
+                }
+
+            }
+        });
+        task2.execute("http://192.168.1.101/election/mssql.php");
+
+        task2.setEachExceptionsHandler(new EachExceptionsHandler() {
+            @Override
+            public void handleIOException(IOException e) {
+                Toast.makeText(getApplicationContext(), "Cannot connect to server!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void handleMalformedURLException(MalformedURLException e) {
+                Toast.makeText(getApplicationContext(), "URL Error!", Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void handleProtocolException(ProtocolException e) {
+                Toast.makeText(getApplicationContext(), "Protocol Error!", Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void handleUnsupportedEncodingException(UnsupportedEncodingException e) {
+                Toast.makeText(getApplicationContext(), "Encoding Error!", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
     }
 }
