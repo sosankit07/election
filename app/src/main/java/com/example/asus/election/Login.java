@@ -22,9 +22,12 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
+import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Random;
+import java.util.concurrent.ExecutionException;
 
 public class Login extends AppCompatActivity {
     Button login;
@@ -34,6 +37,8 @@ public class Login extends AppCompatActivity {
     String Date;
     EditText user,pass;
     String USER, PASS;
+    private String Epass;
+    String pass_retrieve;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,18 +105,37 @@ public class Login extends AppCompatActivity {
 
     public void func(){
         //Toast.makeText(getApplicationContext(),"hello",Toast.LENGTH_SHORT).show();
+
+
+
         HashMap<String, String> getData = new HashMap<String, String>();
         USER = user.getText().toString();
         PASS = pass.getText().toString();
+        Toast.makeText(getApplicationContext(),USER,Toast.LENGTH_SHORT).show();
+//        Intent intent = new Intent(Login.this,Menu.class);
+//        intent.putExtra("userid",USER);
+        Epass = SHAs(PASS);
+
+        String rand;
+
+        rand = generateRandom(5); // change the value of length as per the requirement
+        Epass=Epass+rand;
+
+        PASS= SHAs(Epass); // pass with 2 level of Sha and one salt
+
+
         getData.put("user", USER);
-        getData.put("pass", PASS);
+        //getData.put("pass", PASS);
+
+
 
         PostResponseAsyncTask task2 = new PostResponseAsyncTask(Login.this, getData, new AsyncResponse() {
             @Override
             public void processFinish(String s) {
                 if (!(s.isEmpty())) {
-                   Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Login.this,Menu.class);
+                    intent.putExtra("userid",USER);
                     startActivity(intent);
 
                 } else {
@@ -122,7 +146,15 @@ public class Login extends AppCompatActivity {
 
             }
         });
-        task2.execute("http://192.168.1.101/election/mssql.php");
+
+
+        try {
+            pass_retrieve=task2.execute("http://192.168.43.5/election/user.php").get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         task2.setEachExceptionsHandler(new EachExceptionsHandler() {
             @Override
@@ -150,4 +182,54 @@ public class Login extends AppCompatActivity {
         });
 
     }
+
+
+
+
+
+    public String SHAs(String base) {
+
+
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(base.getBytes("UTF-8"));
+            StringBuffer hexString = new StringBuffer();
+
+
+            for (int i = 0; i < hash.length; i++) {
+                String hex = Integer.toHexString(0xff & hash[i]);
+                if (hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+
+            return hexString.toString();
+
+        } catch (Exception ex) {
+
+            Toast.makeText(this, ex.toString(), Toast.LENGTH_SHORT).show();
+            return ex.toString();
+        }
+    }
+
+    public String generateRandom(int length){
+
+        String randomString;
+        int randnum;
+        randomString = "";
+        Random random = new Random();
+
+        for (int x = 0; x< length; x++){
+            if(random.nextInt(3) + 1 == 1){
+                randnum = random.nextInt(123-97) + 97;
+            }else{
+                randnum = random.nextInt(58-48) + 48;
+            }
+
+            randomString = randomString + randnum;
+
+        }
+
+        return randomString;
+    }
+
 }

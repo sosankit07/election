@@ -33,7 +33,7 @@ import static android.graphics.Color.BLUE;
 import static android.graphics.Color.GRAY;
 
 public class Turnout extends AppCompatActivity {
-    TextView datetime4,turnout_error;
+    TextView datetime4,turnout_error,male_count_report,female_count_report,transgender_count_report,total_count_report;
     Spinner sp,sp1;
     EditText male,female,transgender;
     Button submit;
@@ -45,6 +45,7 @@ public class Turnout extends AppCompatActivity {
     String[] booths;
     String[] status;
     final List<String> listbooth = new ArrayList<>();
+    final List<String> list = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +55,10 @@ public class Turnout extends AppCompatActivity {
         male = findViewById(R.id.male);
         female = findViewById(R.id.female);
         transgender = findViewById(R.id.transgender);
+        male_count_report = findViewById(R.id.male_count_report);
+        female_count_report = findViewById(R.id.female_count_report);
+        transgender_count_report = findViewById(R.id.transgender_count_report);
+        total_count_report = findViewById(R.id.total_count_report);
         submit = findViewById(R.id.submit);
         //Thread to get date and time continuously
         Thread t = new Thread() {
@@ -128,7 +133,6 @@ public class Turnout extends AppCompatActivity {
         Date = simpledateformat1.format(calendar.getTime());
         date=Integer.parseInt(Date);
         String[] time = getResources().getStringArray(R.array.time);
-        final List<String> list = new ArrayList<>();
         if(date>=9&&date<11){
             selectedtime=time[1];
             list.add(selectedtime);
@@ -171,6 +175,7 @@ public class Turnout extends AppCompatActivity {
         sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
                 if (position == 0) {
                     turnout_error.setText("*Select Any Booth");
                     turnout_error.setError("");
@@ -221,6 +226,7 @@ public class Turnout extends AppCompatActivity {
         final String booth = sp.getItemAtPosition(position).toString();
         HashMap<String, String> getData = new HashMap<String, String>();
         getData.put("booth",booth);
+        getData.put("timeselected",currenttimeselected);
         PostResponseAsyncTask task2 = new PostResponseAsyncTask(Turnout.this, getData, new AsyncResponse() {
             @Override
             public void processFinish(String s) {
@@ -284,6 +290,9 @@ public class Turnout extends AppCompatActivity {
             submit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+//                    if(currenttimeselected == "Final"){
+//
+//                    }
                     final String male_count = male.getText().toString();
                     final String female_count = female.getText().toString();
                     final String transgender_count = transgender.getText().toString();
@@ -318,6 +327,8 @@ public class Turnout extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(),"Success", Toast.LENGTH_SHORT).show();
                                         HashMap<String, String> getData = new HashMap<String, String>();
                                         getData.put("submit",update);
+                                        getData.put("booth",booth);
+                                        getData.put("timeselected",currenttimeselected);
                                         getData.put("male",male_count);
                                         getData.put("female",female_count);
                                         getData.put("transgender",transgender_count);

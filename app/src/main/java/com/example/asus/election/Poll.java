@@ -393,41 +393,92 @@ public class Poll extends AppCompatActivity{
                 cancel = customView.findViewById(R.id.cancel);
                 edittime = customView.findViewById(R.id.edittime);
                 agents = customView.findViewById(R.id.agents);*/
-                reports[1] = reports[1].replace(booth,"");
-                reports[2] = reports[2].replace(booth,"");
-                reports[1] = reports[1].replace(",,",",");
-                reports[1] = reports[1].replaceAll(",$","");
-                reports[1] = reports[1].replaceFirst("^,","");
-                reports[2] = reports[2].replace(",,",",");
-                reports[2] = reports[2].replaceAll(",$","");
-                reports[2] = reports[2].replaceFirst("^,","");
-                mock_report.setText(reports[1]);
-                mock_absence_report.setText(reports[2]);
-                mock_report.append("\n*Not Reported");
-                mock_absence_report.append("\n*Not Reported");
-                calendar = Calendar.getInstance();
-                simpledateformat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-                simpledateformat1 = new SimpleDateFormat("hh:mma");
-                Date = simpledateformat1.format(calendar.getTime());
-                mockabsent.setEnabled(false);
-                mockpoll.setEnabled(false);
-                pollstart.setEnabled(true);
-                pollstart.setBackgroundColor(BLUE);
-                mockpoll.setBackgroundColor(GRAY);
-                mockabsent.setBackgroundColor(GRAY);
-                mockpoll.setText("Mock Poll Completed at " + Date);
                 HashMap<String, String> getData = new HashMap<String, String>();
-                getData.put("date",Date);
-                getData.put("mockpoll","Y");
-                getData.put("pollstart","-1");
-                getData.put("voterqueue","-1");
-                getData.put("finalclose","-1");
-                getData.put("pollparty","-1");
+                getData.put("booth",booth);
                 PostResponseAsyncTask task2 = new PostResponseAsyncTask(Poll.this, getData, new AsyncResponse() {
                     @Override
                     public void processFinish(String s) {
                         if (!(s.isEmpty())) {
                             Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+                            String[] temp = s.split(",");
+                            if(temp[0] == "Y"){
+                                if(temp[3] == "Y"){
+                                    reports[1] = reports[1].replace(booth,"");
+                                    reports[2] = reports[2].replace(booth,"");
+                                    reports[1] = reports[1].replace(",,",",");
+                                    reports[1] = reports[1].replaceAll(",$","");
+                                    reports[1] = reports[1].replaceFirst("^,","");
+                                    reports[2] = reports[2].replace(",,",",");
+                                    reports[2] = reports[2].replaceAll(",$","");
+                                    reports[2] = reports[2].replaceFirst("^,","");
+                                    mock_report.setText(reports[1]);
+                                    mock_absence_report.setText(reports[2]);
+                                    mock_report.append("\n*Not Reported");
+                                    mock_absence_report.append("\n*Not Reported");
+                                    calendar = Calendar.getInstance();
+                                    simpledateformat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                                    simpledateformat1 = new SimpleDateFormat("hh:mma");
+                                    Date = simpledateformat1.format(calendar.getTime());
+                                    mockabsent.setEnabled(false);
+                                    mockpoll.setEnabled(false);
+                                    pollstart.setEnabled(true);
+                                    pollstart.setBackgroundColor(BLUE);
+                                    mockpoll.setBackgroundColor(GRAY);
+                                    mockabsent.setBackgroundColor(GRAY);
+                                    mockpoll.setText("Mock Poll Completed at " + Date);
+                                    HashMap<String, String> getData = new HashMap<String, String>();
+                                    getData.put("date",Date);
+                                    getData.put("mockpoll","Y");
+                                    getData.put("pollstart","-1");
+                                    getData.put("voterqueue","-1");
+                                    getData.put("finalclose","-1");
+                                    getData.put("pollparty","-1");
+                                    PostResponseAsyncTask task2 = new PostResponseAsyncTask(Poll.this, getData, new AsyncResponse() {
+                                        @Override
+                                        public void processFinish(String s) {
+                                            if (!(s.isEmpty())) {
+                                                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+
+                                            } else {
+                                                Toast.makeText(getApplicationContext(), "Something went wrong! Try later!", Toast.LENGTH_SHORT).show();
+                                            }
+
+                                        }
+                                    });
+                                    task2.execute("http://192.168.1.101/election/pollstatus.php");
+
+                                    task2.setEachExceptionsHandler(new EachExceptionsHandler() {
+                                        @Override
+                                        public void handleIOException(IOException e) {
+                                            Toast.makeText(getApplicationContext(), "Cannot connect to server!", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                        @Override
+                                        public void handleMalformedURLException(MalformedURLException e) {
+                                            Toast.makeText(getApplicationContext(), "URL Error!", Toast.LENGTH_SHORT).show();
+
+                                        }
+
+                                        @Override
+                                        public void handleProtocolException(ProtocolException e) {
+                                            Toast.makeText(getApplicationContext(), "Protocol Error!", Toast.LENGTH_SHORT).show();
+
+                                        }
+
+                                        @Override
+                                        public void handleUnsupportedEncodingException(UnsupportedEncodingException e) {
+                                            Toast.makeText(getApplicationContext(), "Encoding Error!", Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    });
+                                }
+                                else{
+                                    mockpoll.setError("Polling Party Not Arrived");
+                                }
+                            }
+                            else{
+                                mockpoll.setError("Polling Party Not Dispatched");
+                            }
 
                         } else {
                             Toast.makeText(getApplicationContext(), "Something went wrong! Try later!", Toast.LENGTH_SHORT).show();
@@ -435,7 +486,7 @@ public class Poll extends AppCompatActivity{
 
                     }
                 });
-                task2.execute("http://192.168.1.101/election/pollstatus.php");
+                task2.execute("http://192.168.1.101/election/preboothstatus.php");
 
                 task2.setEachExceptionsHandler(new EachExceptionsHandler() {
                     @Override
@@ -568,40 +619,91 @@ public class Poll extends AppCompatActivity{
                 cancel = customView.findViewById(R.id.cancel);
                 edittime = customView.findViewById(R.id.edittime);
                 agents = customView.findViewById(R.id.agents);*/
-                reports[1] = reports[1].replace(booth,"");
-                reports[2] = reports[2].replace(booth,"");
-                reports[1] = reports[1].replace(",,",",");
-                reports[1] = reports[1].replaceAll(",$","");
-                reports[1] = reports[1].replaceFirst("^,","");
-                reports[2] = reports[2].replace(",,",",");
-                reports[2] = reports[2].replaceAll(",$","");
-                reports[2] = reports[2].replaceFirst("^,","");
-                mock_report.setText(reports[1]);
-                mock_absence_report.setText(reports[2]);
-                mock_report.append("\n*Not Reported");
-                mock_absence_report.append("\n*Not Reported");
-                calendar = Calendar.getInstance();
-                simpledateformat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-                simpledateformat1 = new SimpleDateFormat("hh:mma");
-                Date = simpledateformat1.format(calendar.getTime());
-                mockabsent.setEnabled(false);
-                mockpoll.setEnabled(false);
-                pollstart.setEnabled(true);
-                pollstart.setBackgroundColor(BLUE);
-                mockpoll.setBackgroundColor(GRAY);
-                mockabsent.setBackgroundColor(GRAY);
                 HashMap<String, String> getData = new HashMap<String, String>();
-                getData.put("date",Date);
-                getData.put("mockpoll","N");
-                getData.put("pollstart","-1");
-                getData.put("voterqueue","-1");
-                getData.put("finalclose","-1");
-                getData.put("pollparty","-1");
+                getData.put("booth",booth);
                 PostResponseAsyncTask task2 = new PostResponseAsyncTask(Poll.this, getData, new AsyncResponse() {
                     @Override
                     public void processFinish(String s) {
                         if (!(s.isEmpty())) {
                             Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+                            String[] temp = s.split(",");
+                            if(temp[0] == "Y"){
+                                if(temp[3] == "Y"){
+                                    reports[1] = reports[1].replace(booth,"");
+                                    reports[2] = reports[2].replace(booth,"");
+                                    reports[1] = reports[1].replace(",,",",");
+                                    reports[1] = reports[1].replaceAll(",$","");
+                                    reports[1] = reports[1].replaceFirst("^,","");
+                                    reports[2] = reports[2].replace(",,",",");
+                                    reports[2] = reports[2].replaceAll(",$","");
+                                    reports[2] = reports[2].replaceFirst("^,","");
+                                    mock_report.setText(reports[1]);
+                                    mock_absence_report.setText(reports[2]);
+                                    mock_report.append("\n*Not Reported");
+                                    mock_absence_report.append("\n*Not Reported");
+                                    calendar = Calendar.getInstance();
+                                    simpledateformat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                                    simpledateformat1 = new SimpleDateFormat("hh:mma");
+                                    Date = simpledateformat1.format(calendar.getTime());
+                                    mockabsent.setEnabled(false);
+                                    mockpoll.setEnabled(false);
+                                    pollstart.setEnabled(true);
+                                    pollstart.setBackgroundColor(BLUE);
+                                    mockpoll.setBackgroundColor(GRAY);
+                                    mockabsent.setBackgroundColor(GRAY);
+                                    HashMap<String, String> getData = new HashMap<String, String>();
+                                    getData.put("date",Date);
+                                    getData.put("mockpoll","N");
+                                    getData.put("pollstart","-1");
+                                    getData.put("voterqueue","-1");
+                                    getData.put("finalclose","-1");
+                                    getData.put("pollparty","-1");
+                                    PostResponseAsyncTask task2 = new PostResponseAsyncTask(Poll.this, getData, new AsyncResponse() {
+                                        @Override
+                                        public void processFinish(String s) {
+                                            if (!(s.isEmpty())) {
+                                                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+
+                                            } else {
+                                                Toast.makeText(getApplicationContext(), "Something went wrong! Try later!", Toast.LENGTH_SHORT).show();
+                                            }
+
+                                        }
+                                    });
+                                    task2.execute("http://192.168.1.101/election/pollstatus.php");
+
+                                    task2.setEachExceptionsHandler(new EachExceptionsHandler() {
+                                        @Override
+                                        public void handleIOException(IOException e) {
+                                            Toast.makeText(getApplicationContext(), "Cannot connect to server!", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                        @Override
+                                        public void handleMalformedURLException(MalformedURLException e) {
+                                            Toast.makeText(getApplicationContext(), "URL Error!", Toast.LENGTH_SHORT).show();
+
+                                        }
+
+                                        @Override
+                                        public void handleProtocolException(ProtocolException e) {
+                                            Toast.makeText(getApplicationContext(), "Protocol Error!", Toast.LENGTH_SHORT).show();
+
+                                        }
+
+                                        @Override
+                                        public void handleUnsupportedEncodingException(UnsupportedEncodingException e) {
+                                            Toast.makeText(getApplicationContext(), "Encoding Error!", Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    });
+                                }
+                                else{
+                                    mockabsent.setError("Polling Party Not Arrived");
+                                }
+                            }
+                            else{
+                                mockabsent.setError("Polling Party Not Dispatched");
+                            }
 
                         } else {
                             Toast.makeText(getApplicationContext(), "Something went wrong! Try later!", Toast.LENGTH_SHORT).show();
@@ -609,7 +711,7 @@ public class Poll extends AppCompatActivity{
 
                     }
                 });
-                task2.execute("http://192.168.1.101/election/pollstatus.php");
+                task2.execute("http://192.168.1.101/election/preboothstatus.php");
 
                 task2.setEachExceptionsHandler(new EachExceptionsHandler() {
                     @Override
@@ -635,6 +737,7 @@ public class Poll extends AppCompatActivity{
 
                     }
                 });
+
                 //mockpoll.setText("Mock Poll Completed at " + Date);
                 //edittime.setText(Date);
                 //instantiate popup window
@@ -914,44 +1017,91 @@ public class Poll extends AppCompatActivity{
                 submit = customView.findViewById(R.id.confirm1);
                 cancel = customView.findViewById(R.id.cancel1);
                 edittime = customView.findViewById(R.id.edittime1);*/
-                reports[4] = reports[4].replace(booth,"");
-                reports[5] = reports[5].replace(booth,"");
-                reports[4] = reports[4].replace(",,",",");
-                reports[4] = reports[4].replaceAll(",$","");
-                reports[4] = reports[4].replaceFirst("^,","");
-                reports[5] = reports[5].replace(",,",",");
-                reports[5] = reports[5].replaceAll(",$","");
-                reports[5] = reports[5].replaceFirst("^,","");
-                poll_votersqueue_report.setText(reports[4]);
-                finalpoll_report.setText(reports[5]);
-                poll_votersqueue_report.append("\n*Not Reported");
-                finalpoll_report.append("\n*Not Reported");
-                calendar = Calendar.getInstance();
-                simpledateformat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-                simpledateformat1 = new SimpleDateFormat("hh:mma");
-                Date = simpledateformat1.format(calendar.getTime());
-                //edittime.setText(Date);
-                //agents.setVisibility(View.GONE);
-                //instantiate popup window
-                pollparty.setEnabled(true);
-                poll_votersqueue.setEnabled(false);
-                poll_votersqueue.setBackgroundColor(GRAY);
-                pollparty.setBackgroundColor(BLUE);
-                finalclose.setText("Poll Concluded at " + Date);
-                finalclose.setEnabled(false);
-                finalclose.setBackgroundColor(GRAY);
                 HashMap<String, String> getData = new HashMap<String, String>();
-                getData.put("date",Date);
-                getData.put("mockpoll","-1");
-                getData.put("pollstart","-1");
-                getData.put("voterqueue","-1");
-                getData.put("finalclose","Y");
-                getData.put("pollparty","-1");
+                getData.put("booth",booth);
+                getData.put("timeselected","5PM");
                 PostResponseAsyncTask task2 = new PostResponseAsyncTask(Poll.this, getData, new AsyncResponse() {
                     @Override
                     public void processFinish(String s) {
                         if (!(s.isEmpty())) {
-                            Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+                            status = s.split(",");
+                            if(status[0].equals("-1")){
+                                finalclose.setError("5PM Turnout Count Not Given");
+                            }
+                            else {
+                                reports[4] = reports[4].replace(booth,"");
+                                reports[5] = reports[5].replace(booth,"");
+                                reports[4] = reports[4].replace(",,",",");
+                                reports[4] = reports[4].replaceAll(",$","");
+                                reports[4] = reports[4].replaceFirst("^,","");
+                                reports[5] = reports[5].replace(",,",",");
+                                reports[5] = reports[5].replaceAll(",$","");
+                                reports[5] = reports[5].replaceFirst("^,","");
+                                poll_votersqueue_report.setText(reports[4]);
+                                finalpoll_report.setText(reports[5]);
+                                poll_votersqueue_report.append("\n*Not Reported");
+                                finalpoll_report.append("\n*Not Reported");
+                                calendar = Calendar.getInstance();
+                                simpledateformat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                                simpledateformat1 = new SimpleDateFormat("hh:mma");
+                                Date = simpledateformat1.format(calendar.getTime());
+                                //edittime.setText(Date);
+                                //agents.setVisibility(View.GONE);
+                                //instantiate popup window
+                                pollparty.setEnabled(true);
+                                poll_votersqueue.setEnabled(false);
+                                poll_votersqueue.setBackgroundColor(GRAY);
+                                pollparty.setBackgroundColor(BLUE);
+                                finalclose.setText("Poll Concluded at " + Date);
+                                finalclose.setEnabled(false);
+                                finalclose.setBackgroundColor(GRAY);
+                                HashMap<String, String> getData = new HashMap<String, String>();
+                                getData.put("date",Date);
+                                getData.put("mockpoll","-1");
+                                getData.put("pollstart","-1");
+                                getData.put("voterqueue","-1");
+                                getData.put("finalclose","Y");
+                                getData.put("pollparty","-1");
+                                PostResponseAsyncTask task2 = new PostResponseAsyncTask(Poll.this, getData, new AsyncResponse() {
+                                    @Override
+                                    public void processFinish(String s) {
+                                        if (!(s.isEmpty())) {
+                                            Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+
+                                        } else {
+                                            Toast.makeText(getApplicationContext(), "Something went wrong! Try later!", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                    }
+                                });
+                                task2.execute("http://192.168.1.101/election/pollstatus.php");
+
+                                task2.setEachExceptionsHandler(new EachExceptionsHandler() {
+                                    @Override
+                                    public void handleIOException(IOException e) {
+                                        Toast.makeText(getApplicationContext(), "Cannot connect to server!", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    @Override
+                                    public void handleMalformedURLException(MalformedURLException e) {
+                                        Toast.makeText(getApplicationContext(), "URL Error!", Toast.LENGTH_SHORT).show();
+
+                                    }
+
+                                    @Override
+                                    public void handleProtocolException(ProtocolException e) {
+                                        Toast.makeText(getApplicationContext(), "Protocol Error!", Toast.LENGTH_SHORT).show();
+
+                                    }
+
+                                    @Override
+                                    public void handleUnsupportedEncodingException(UnsupportedEncodingException e) {
+                                        Toast.makeText(getApplicationContext(), "Encoding Error!", Toast.LENGTH_SHORT).show();
+
+                                    }
+                                });
+                            }
 
                         } else {
                             Toast.makeText(getApplicationContext(), "Something went wrong! Try later!", Toast.LENGTH_SHORT).show();
@@ -959,7 +1109,7 @@ public class Poll extends AppCompatActivity{
 
                     }
                 });
-                task2.execute("http://192.168.1.101/election/pollstatus.php");
+                task2.execute("http://192.168.1.101/election/turnoutstatus.php");
 
                 task2.setEachExceptionsHandler(new EachExceptionsHandler() {
                     @Override
@@ -985,6 +1135,7 @@ public class Poll extends AppCompatActivity{
 
                     }
                 });
+
                 /*popupWindow = new PopupWindow(customView, RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 popupWindow.setHeight(900);
                 //display the popup window

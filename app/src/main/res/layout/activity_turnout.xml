@@ -104,4 +104,37 @@
         android:layout_marginBottom="-50dp"
         android:layout_toEndOf="@+id/male"
         android:textColor="#ff0000" />
+
+    <TextView
+        android:id="@+id/male_count_report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/male"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="82dp"
+        />
+
+    <TextView
+        android:id="@+id/female_count_report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/female"
+        android:layout_alignStart="@+id/male_count_report"
+        />
+
+    <TextView
+        android:id="@+id/transgender_count_report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        />
+
+    <TextView
+        android:id="@+id/total_count_report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        />
 </RelativeLayout>
